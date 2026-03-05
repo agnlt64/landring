@@ -1,65 +1,98 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import MatrixRain         from "@/components/MatrixRain";
+import BootSequence       from "@/components/BootSequence";
+import HeroSection        from "@/components/HeroSection";
+import LatestDropSection  from "@/components/LatestDropSection";
+import LiveLogsSection    from "@/components/LiveLogsSection";
+import NetworkFooter      from "@/components/NetworkFooter";
+
+/* ─── Section divider — pure terminal aesthetics ─── */
+function SectionDivider({ label }: { label: string }) {
+  const dashes = 4;
+  const padded = `${"─".repeat(dashes)} ${label} ${"─".repeat(dashes)}`;
+  return (
+    <div className="px-6">
+      <div className="max-w-3xl mx-auto">
+        <div className="text-[10px] text-[#151515] font-mono py-1 overflow-hidden">
+          {padded}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
+  /* Controls whether the boot sequence overlay is shown */
+  const [booted, setBooted] = useState(false);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
+    <>
+      {/* ── Fixed ambient layers (always present) ── */}
+      <MatrixRain />
+      <div className="scanlines"      aria-hidden="true" />
+      <div className="crt-vignette"   aria-hidden="true" />
+      <div className="noise-overlay"  aria-hidden="true" />
+
+      {/* ── Boot sequence overlay ──
+          Renders on top of everything, then fades out and unmounts.
+          onComplete is fired after the GSAP fade-out completes. */}
+      {!booted && (
+        <BootSequence onComplete={() => setBooted(true)} />
+      )}
+
+      {/* ── Fixed minimal nav ── */}
+      <nav
+        className="fixed top-0 left-0 right-0 z-20 flex items-center justify-between px-4 py-2
+                   bg-[rgba(5,5,5,0.92)] border-b border-[#0e0e0e] backdrop-blur-sm"
+        style={{ display: booted ? "flex" : "none" }}
+      >
+        <span
+          className="text-xs font-bold tracking-[0.25em] glow-green-sm"
+          style={{ color: "#00ff00" }}
+        >
+          DRING.EXE
+        </span>
+
+        <div className="hidden sm:flex items-center gap-6 text-[10px] text-[#444]">
+          {[
+            { label: "/releases", href: "#releases" },
+            { label: "/live",     href: "#live"     },
+            { label: "/network",  href: "#network"  },
+          ].map(({ label, href }) => (
             <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              key={href}
+              href={href}
+              className="hover:text-[#00ff00] transition-colors duration-150"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              {label}
+            </a>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+        <span className="text-[10px] text-[#2a2a2a]">v2.0.2</span>
+      </nav>
+
+      {/* ── Main content — fades in once boot sequence completes ── */}
+      <main
+        className="relative"
+        style={{
+          opacity:       booted ? 1 : 0,
+          transition:    "opacity 0.8s ease-in-out",
+          pointerEvents: booted ? "auto" : "none",
+        }}
+      >
+        <HeroSection />
+
+        <SectionDivider label="LATEST_RELEASE" />
+        <LatestDropSection />
+
+        <SectionDivider label="LIVE_EVENTS" />
+        <LiveLogsSection />
+
+        <NetworkFooter />
       </main>
-    </div>
+    </>
   );
 }
