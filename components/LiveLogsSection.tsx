@@ -160,7 +160,7 @@ function TicketDialog({ event, onClose }: TicketDialogProps) {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      className="fixed inset-0 z-100 flex items-center justify-center p-4"
       style={{ backgroundColor: "rgba(0,0,0,0.85)" }}
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
@@ -383,7 +383,7 @@ export default function LiveLogsSection() {
 
                     {/* Expanded detail row on hover — height always reserved, no layout shift */}
                     <div
-                      className="font-mono text-[9px] sm:text-[10px] flex flex-wrap gap-x-4 gap-y-0.5 mt-[5px]"
+                      className="font-mono text-[9px] sm:text-[10px] flex flex-wrap gap-x-4 gap-y-0.5 mt-1.25"
                       style={{
                         opacity:    hovered ? 1 : 0,
                         transition: "opacity 0.18s ease",

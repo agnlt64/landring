@@ -94,7 +94,7 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
         </div>
 
         {/* Log lines */}
-        <div className="space-y-[3px]">
+        <div className="space-y-0.75">
           {BOOT_LINES.map((line, i) =>
             visibleLines.has(i) ? (
               <div
@@ -105,7 +105,7 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
                 {line.text}
                 {/* Blink cursor on last visible line */}
                 {i === Math.max(...Array.from(visibleLines)) && line.type !== "boot" && (
-                  <span className="cursor-blink ml-1 inline-block w-[6px] h-[10px] bg-[#555] align-middle" />
+                  <span className="cursor-blink ml-1 inline-block w-1.5 h-2.5 bg-[#555] align-middle" />
                 )}
               </div>
             ) : null

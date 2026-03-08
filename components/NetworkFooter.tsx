@@ -101,7 +101,7 @@ export default function NetworkFooter() {
           </div>
 
           {/* Social commands */}
-          <div className="space-y-[2px]">
+          <div className="space-y-0.5">
             {SOCIALS.map((social, i) => (
               <div
                 key={i}
@@ -209,7 +209,7 @@ export default function NetworkFooter() {
           <span className="text-[#00ff00]">root@dring</span>
           <span className="text-[#444]">:~$</span>
           <span
-            className="ml-1 inline-block w-[8px] h-[14px] bg-[#444] align-middle"
+            className="ml-1 inline-block w-2 h-3.5 bg-[#444] align-middle"
             style={{ animation: "cursor-blink 1s step-start infinite" }}
           />
         </div>

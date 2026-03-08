@@ -167,11 +167,11 @@ export default function LatestDropSection() {
 
                   {/* Waveform bars when playing (CSS animation) */}
                   {active && isPlaying && (
-                    <span className="flex items-end gap-[2px] h-4 shrink-0">
+                    <span className="flex items-end gap-0.5 h-4 shrink-0">
                       {[3, 5, 4, 6, 3, 5, 2].map((h, j) => (
                         <span
                           key={j}
-                          className="w-[2px] bg-[#00ff00] rounded-sm"
+                          className="w-0.5 bg-[#00ff00] rounded-sm"
                           style={{
                             height: `${h * 2}px`,
                             animation: `cursor-blink ${0.3 + j * 0.07}s step-start infinite`,
@@ -193,7 +193,7 @@ export default function LatestDropSection() {
             {/* Progress bar */}
             <div className="flex items-center gap-3 text-[10px] text-[#666]">
               <span className="w-8 text-right shrink-0">{fmtTime(currentSecs)}</span>
-              <div className="flex-1 h-[3px] bg-[#111] relative overflow-hidden">
+              <div className="flex-1 h-0.75 bg-[#111] relative overflow-hidden">
                 <div
                   className="absolute inset-y-0 left-0 bg-[#00ff00] transition-all duration-75"
                   style={{
