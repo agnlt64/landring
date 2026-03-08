@@ -20,8 +20,8 @@ const EVENTS: Event[] = [
   { date: "2026.11.20", venue: "CONDOM_PALAIS_DES_ARTS",    city: "CONDOM",     country: "FR", capacity: "800",    status: "pending",   ticket: "BILLETS_DISPO" },
   { date: "2026.11.27", venue: "BEZONS_ESPACE_CULTUREL",    city: "BEZONS",     country: "FR", capacity: "650",    status: "pending",   ticket: "BILLETS_DISPO" },
   { date: "2026.12.04", venue: "ANUSSE_OPEN_AIR",           city: "ANUSSE",     country: "FR", capacity: "420",    status: "scheduled", ticket: "SOON"          },
-  { date: "2026.12.11", venue: "MONTETON_MAIRIE",           city: "LONGUEFUYE", country: "FR", capacity: "300",    status: "scheduled", ticket: "SOON"          },
-  { date: "2026.12.18", venue: "SUCE_SUR_ERDRE_AUTOROUTE",  city: "PRISSÉ",     country: "FR", capacity: "500",    status: "scheduled", ticket: "SOON"          },
+  { date: "2026.12.11", venue: "MONTETON_MAIRIE",           city: "MONTETON", country: "FR", capacity: "300",    status: "scheduled", ticket: "SOON"          },
+  { date: "2026.12.18", venue: "SUCE_SUR_ERDRE_AUTOROUTE",  city: "SUCE_SUR_ERDRE",     country: "FR", capacity: "500",    status: "scheduled", ticket: "SOON"          },
 ];
 
 const STATUS_LABEL: Record<Event["status"], string> = {
