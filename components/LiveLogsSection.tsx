@@ -94,7 +94,7 @@ function TicketDialog({ event, onClose }: TicketDialogProps) {
 
       /* Attendee */
       doc.setFontSize(8);
-      doc.setTextColor(70, 70, 70);
+      doc.setTextColor(140, 140, 140);
       doc.text("TITULAIRE DU BILLET", 14, 48);
       doc.setFontSize(18);
       doc.setTextColor(212, 212, 212);
@@ -118,11 +118,11 @@ function TicketDialog({ event, onClose }: TicketDialogProps) {
       let y = 74;
       details.forEach(([label, value]) => {
         doc.setFontSize(7);
-        doc.setTextColor(70, 70, 70);
+        doc.setTextColor(130, 130, 130);
         doc.setFont("courier", "normal");
         doc.text(label, 14, y);
         doc.setFontSize(11);
-        doc.setTextColor(160, 160, 160);
+        doc.setTextColor(200, 200, 200);
         doc.setFont("courier", "bold");
         doc.text(value, 14, y + 6);
         y += 16;
@@ -137,7 +137,7 @@ function TicketDialog({ event, onClose }: TicketDialogProps) {
       doc.addImage(qrDataUrl, "PNG", W / 2 - 22, qrY, 44, 44);
 
       doc.setFontSize(7);
-      doc.setTextColor(70, 70, 70);
+      doc.setTextColor(130, 130, 130);
       doc.setFont("courier", "normal");
       doc.text("SCANNER POUR ECOUTER LE DERNIER ALBUM", W / 2, qrY + 50, { align: "center" });
 
@@ -148,7 +148,7 @@ function TicketDialog({ event, onClose }: TicketDialogProps) {
       /* Ticket ID */
       const ticketId = `TKT-${Date.now().toString(36).toUpperCase()}`;
       doc.setFontSize(7);
-      doc.setTextColor(50, 50, 50);
+      doc.setTextColor(100, 100, 100);
       doc.text(ticketId, W / 2, 290, { align: "center" });
 
       doc.save(`DRING_TICKET_${event.city}_${firstName.toUpperCase()}_${lastName.toUpperCase()}.pdf`);
@@ -179,7 +179,7 @@ function TicketDialog({ event, onClose }: TicketDialogProps) {
           </span>
           <button
             onClick={onClose}
-            className="text-[#444] hover:text-[#888] text-xs transition-colors"
+            className="text-[#666] hover:text-[#aaa] text-xs transition-colors cursor-pointer"
           >
             [✕]
           </button>
@@ -187,40 +187,40 @@ function TicketDialog({ event, onClose }: TicketDialogProps) {
 
         <div className="px-4 py-5 space-y-5">
           {/* Event recap */}
-          <div className="text-[10px] text-[#444] space-y-0.5">
-            <div><span className="text-[#555]">venue:</span> <span className="text-[#666]">{event.venue.replace(/_/g, " ")}</span></div>
-            <div><span className="text-[#555]">date:</span>  <span className="text-[#666]">{event.date}</span></div>
-            <div><span className="text-[#555]">city:</span>  <span className="text-[#666]">{event.city.replace(/_/g, " ")}</span></div>
+          <div className="text-[10px] space-y-0.5">
+            <div><span className="text-[#777]">venue:</span> <span className="text-[#999]">{event.venue.replace(/_/g, " ")}</span></div>
+            <div><span className="text-[#777]">date:</span>  <span className="text-[#999]">{event.date}</span></div>
+            <div><span className="text-[#777]">city:</span>  <span className="text-[#999]">{event.city.replace(/_/g, " ")}</span></div>
           </div>
 
           <div className="border-t border-[#111]" />
 
           {/* Prompt label */}
-          <div className="text-[10px] text-[#555]">
+          <div className="text-[10px] text-[#777]">
             <span className="text-[#00ff00]">$</span> enter attendee info:
           </div>
 
           {/* Inputs */}
           <div className="space-y-3">
             <div>
-              <label className="block text-[9px] text-[#444] mb-1 tracking-widest">PRÉNOM</label>
+              <label className="block text-[9px] text-[#666] mb-1 tracking-widest">PRÉNOM</label>
               <input
                 type="text"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 placeholder="Jean"
-                className="w-full bg-[#050505] border border-[#1f1f1f] text-[#a0a0a0] text-xs px-3 py-2 outline-none focus:border-[#00ff00] transition-colors placeholder-[#333]"
+                className="w-full bg-[#050505] border border-[#2a2a2a] text-[#a0a0a0] text-xs px-3 py-2 outline-none focus:border-[#00ff00] transition-colors placeholder-[#444]"
                 style={{ fontFamily: "inherit" }}
               />
             </div>
             <div>
-              <label className="block text-[9px] text-[#444] mb-1 tracking-widest">NOM</label>
+              <label className="block text-[9px] text-[#666] mb-1 tracking-widest">NOM</label>
               <input
                 type="text"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
                 placeholder="Dupont"
-                className="w-full bg-[#050505] border border-[#1f1f1f] text-[#a0a0a0] text-xs px-3 py-2 outline-none focus:border-[#00ff00] transition-colors placeholder-[#333]"
+                className="w-full bg-[#050505] border border-[#2a2a2a] text-[#a0a0a0] text-xs px-3 py-2 outline-none focus:border-[#00ff00] transition-colors placeholder-[#444]"
                 style={{ fontFamily: "inherit" }}
               />
             </div>
@@ -230,14 +230,14 @@ function TicketDialog({ event, onClose }: TicketDialogProps) {
           <div className="flex gap-2 pt-1">
             <button
               onClick={onClose}
-              className="flex-1 text-[10px] py-2 border border-[#1f1f1f] text-[#444] hover:text-[#666] transition-colors"
+              className="flex-1 text-[10px] py-2 border border-[#2a2a2a] text-[#666] hover:text-[#999] transition-colors cursor-pointer"
             >
               ANNULER
             </button>
             <button
               onClick={handleDownload}
               disabled={!firstName.trim() || !lastName.trim() || loading}
-              className="flex-1 text-[10px] py-2 border border-[#00ff00] text-[#00ff00] font-bold tracking-widest transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+              className="flex-1 text-[10px] py-2 border border-[#00ff00] text-[#00ff00] font-bold tracking-widest transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
               style={{
                 boxShadow: firstName.trim() && lastName.trim() ? "0 0 12px rgba(0,255,0,0.15)" : "none",
               }}
@@ -301,11 +301,11 @@ export default function LiveLogsSection() {
         <div className="max-w-3xl mx-auto">
 
           {/* Shell breadcrumb */}
-          <div className="flex items-center gap-2 text-xs mb-2 text-[#555]">
+          <div className="flex items-center gap-2 text-xs mb-2 text-[#777]">
             <span className="text-[#00ff00]">$</span>
             <span>tail -f /var/log/live_events.log</span>
           </div>
-          <div className="text-[#3a3a3a] text-[10px] mb-10">
+          <div className="text-[#555] text-[10px] mb-10">
             [INFO] Monitoring live events stream... Press Ctrl+C to exit.
           </div>
 
@@ -347,7 +347,7 @@ export default function LiveLogsSection() {
                     <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] sm:text-xs">
 
                       {/* Timestamp */}
-                      <span className="text-[#555] shrink-0">[{event.date}]</span>
+                      <span className="text-[#666] shrink-0">[{event.date}]</span>
 
                       {/* Status badge */}
                       <span
@@ -374,26 +374,26 @@ export default function LiveLogsSection() {
                       {/* Download button */}
                       <button
                         onClick={() => setDialogEvent(event)}
-                        className="shrink-0 text-[9px] px-2 py-0.5 border border-[#1f1f1f] text-[#555] hover:text-[#00ff00] hover:border-[#00ff0033] transition-all duration-150 font-mono"
+                        className="shrink-0 text-[9px] px-2 py-0.5 border border-[#2a2a2a] text-[#777] hover:text-[#00ff00] hover:border-[#00ff0033] transition-all duration-150 font-mono cursor-pointer"
                         title="Télécharger le billet PDF"
                       >
                         ↓ BILLET
                       </button>
                     </div>
 
-                    {/* Expanded detail row on hover */}
+                    {/* Expanded detail row on hover — height always reserved, no layout shift */}
                     <div
-                      className="font-mono text-[9px] sm:text-[10px] text-[#444] flex flex-wrap gap-x-4 gap-y-0.5 overflow-hidden"
+                      className="font-mono text-[9px] sm:text-[10px] flex flex-wrap gap-x-4 gap-y-0.5 mt-[5px]"
                       style={{
-                        maxHeight: hovered ? "40px" : "0px",
-                        marginTop: hovered ? "5px"  : "0px",
-                        transition: "max-height 0.2s ease, margin-top 0.2s ease",
+                        opacity:    hovered ? 1 : 0,
+                        transition: "opacity 0.18s ease",
+                        pointerEvents: hovered ? "auto" : "none",
                       }}
                     >
-                      <span>city: <span className="text-[#666]">{event.city}</span></span>
-                      <span>country: <span className="text-[#666]">{event.country}</span></span>
-                      <span>capacity: <span className="text-[#666]">{event.capacity}</span></span>
-                      <span>pid: <span className="text-[#444]">{1000 + i * 137}</span></span>
+                      <span className="text-[#666]">city: <span className="text-[#888]">{event.city}</span></span>
+                      <span className="text-[#666]">country: <span className="text-[#888]">{event.country}</span></span>
+                      <span className="text-[#666]">capacity: <span className="text-[#888]">{event.capacity}</span></span>
+                      <span className="text-[#555]">pid: <span className="text-[#666]">{1000 + i * 137}</span></span>
                     </div>
                   </div>
                 );
@@ -402,13 +402,13 @@ export default function LiveLogsSection() {
 
             {/* Footer */}
             <div className="px-4 py-2.5 border-t border-[#1a1a1a] bg-[#080808]">
-              <span className="text-[9px] sm:text-[10px] text-[#3a3a3a] font-mono">
+              <span className="text-[9px] sm:text-[10px] text-[#666] font-mono">
                 {EVENTS.length} events loaded ·&nbsp;
-                <span className="text-[#444]">
+                <span className="text-[#777]">
                   {EVENTS.filter((e) => e.status === "success").length} SOLD_OUT
                 </span>
                 &nbsp;·&nbsp;
-                <span className="text-[#444]">
+                <span className="text-[#777]">
                   {EVENTS.filter((e) => e.status !== "success").length} UPCOMING
                 </span>
                 &nbsp;· ^C to exit
